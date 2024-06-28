@@ -3,27 +3,32 @@ version: '3.7'
 services:
   postgres:
     image: postgres:13
+    platform: linux/amd64
     environment:
       POSTGRES_USER: airflow
       POSTGRES_PASSWORD: airflow
       POSTGRES_DB: airflow
     volumes:
       - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
 
   redis:
     image: redis:latest
+    platform: linux/amd64
     ports:
       - "6379:6379"
 
   webserver:
     image: apache/airflow:2.5.1
+    platform: linux/amd64
     depends_on:
       - postgres
       - redis
     environment:
       AIRFLOW__CORE__EXECUTOR: CeleryExecutor
       AIRFLOW__CORE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres/airflow
-      AIRFLOW__CORE__FERNET_KEY: 'YOUR_FERNET_KEY'
+      AIRFLOW__CORE__FERNET_KEY: '7l_qeTV_kOWaFGWF707WL7OidsqJw-RsljIv6N0AonE='
       AIRFLOW__CORE__LOAD_EXAMPLES: 'False'
       AIRFLOW__CELERY__BROKER_URL: redis://redis:6379/0
       AIRFLOW__CELERY__RESULT_BACKEND: db+postgresql://airflow:airflow@postgres/airflow
@@ -37,6 +42,7 @@ services:
 
   scheduler:
     image: apache/airflow:2.5.1
+    platform: linux/amd64
     depends_on:
       - webserver
       - postgres
@@ -55,6 +61,7 @@ services:
 
   worker:
     image: apache/airflow:2.5.1
+    platform: linux/amd64
     depends_on:
       - scheduler
       - redis

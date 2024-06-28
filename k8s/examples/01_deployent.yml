@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: datacamp-deployment
+  labels:
+    app: datacamp-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: datacamp-app
+  template:
+    metadata:
+      labels:
+        app: datacamp-app
+    spec:
+      containers:
+      - name: alpine
+        image: alpine
+        command:
+        - sleep
+        - "3600"
+        ports:
+        - containerPort: 1234  # this is the port our Pods will listen on
+          name: our-svc-port   # the port can have a name
