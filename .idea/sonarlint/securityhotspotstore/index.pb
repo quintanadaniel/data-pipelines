@@ -7,3 +7,6 @@ N
 scripts/generate_fernet_key.py,3/d/3da537766e1fb2fcc611af1745f36d2d40a44074
 @
 requirements.txt,1/9/19359a61ae2446b51b549167b014da2fcf265768
+:
+
+.gitignore,a/5/a5cc2925ca8258af241be7e5b0381edf30266302
