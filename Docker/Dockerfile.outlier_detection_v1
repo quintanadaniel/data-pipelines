@@ -1,0 +1,6 @@
+FROM alpine
+RUN  apk add python3
+COPY data.csv /data.csv
+COPY detect_outliers_v1.py /detect_outliers_v1.py
+
+CMD  python /detect_outliers_v1.py

@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: outlier-detection-1
+spec:
+  terminationGracePeriodSeconds: 2
+  restartPolicy: Never
+  containers:
+  - name: outlier-detection
+    image: outlier-detection:v1
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: outlier-detection-2
+spec:
+  terminationGracePeriodSeconds: 2
+  restartPolicy: Never
+  containers:
+  - name: outlier-detection
+    image: outlier-detection:v2

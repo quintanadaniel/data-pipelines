@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: datacamp-statefulset
+  namespace: datacamp
+spec:
+  replicas: 6
+  selector:
+    matchLabels:
+      app: datacamp-statefulset
+  template:
+    metadata:
+      labels:
+        app: datacamp-statefulset
+    spec:
+      terminationGracePeriodSeconds: 2
+      containers:
+      - name: alpine
+        image: alpine
+        command:
+        - sleep
+        - "3600"
+        volumeMounts:
+        - name: pv-mydata
+          mountPath: /mydata
+  volumeClaimTemplates:
+  - metadata:
+      name: pv-mydata
+    spec:
+      accessModes:
+      - "ReadWriteOnce"
+      storageClassName: local-path
+      resources:
+        requests:
+          storage: 10Mi

@@ -1,0 +1,39 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: datacamp-pod-1
+spec:
+  terminationGracePeriodSeconds: 2
+  containers:
+  - name: alpine
+    image: alpine
+    command:
+    - sleep
+    - "3600"
+    volumeMounts:
+    - name: pv-mydata
+      mountPath: /mydata
+  volumes:
+  - name: pv-mydata
+    persistentVolumeClaim:
+      claimName: datacamp-pvc
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: datacamp-pod-2
+spec:
+  terminationGracePeriodSeconds: 2
+  containers:
+  - name: alpine
+    image: alpine
+    command:
+    - sleep
+    - "3600"
+    volumeMounts:
+    - name: pv-mydata
+      mountPath: /mydata
+  volumes:
+  - name: pv-mydata
+    persistentVolumeClaim:
+      claimName: datacamp-pvc
