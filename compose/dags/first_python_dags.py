@@ -3,26 +3,28 @@ from airflow import DAG
 from airflow.operators.empty import EmptyOperator
 from airflow.operators.python import PythonOperator
 
+
 # Define a simple function to be used as a task
 def my_first_task():
     print("Hello, this is my first Airflow task!")
 
+
 # Default arguments for the DAG
 default_args = {
-    'owner': 'airflow',
-    'start_date': datetime(2023, 1, 1),
+    'owner': 'daniel',
+    'email': 'prueba@prueba.com',
+    'start_date': datetime(2024, 7, 4),
     'retries': 1,
 }
 
 # Instantiate the DAG
 with DAG(
-    'first_dag',
-    default_args=default_args,
-    description='My first DAG',
-    schedule_interval='@daily',
-    catchup=False,
+        'first_dag',
+        default_args=default_args,
+        description='My first DAG',
+        schedule_interval='@daily',
+        catchup=False,
 ) as dag:
-
     # Define tasks
     start = EmptyOperator(
         task_id='start'
