@@ -77,3 +77,7 @@ If you have problems, you need to run the following:
    ``` 
 
 3. Make a docker compose up -d to reset the containers.
+
+## Notes
+
+It's very important when we work with airflow, take account the configurations necessaries for example, if you use PostgresOperator and use the attribute 
