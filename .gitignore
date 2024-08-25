@@ -1,5 +1,7 @@
-.idea/
-.idea/*
+.idea
 compose/logs/*
 
-compose/.env
+/compose/.env
+compose/dags/*pycache*
+compose/dags/__pycache__/*
+.DS_Store

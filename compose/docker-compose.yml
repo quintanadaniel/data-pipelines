@@ -36,6 +36,9 @@ services:
       - ./dags:/opt/airflow/dags
       - ./logs:/opt/airflow/logs
       - ./plugins:/opt/airflow/plugins
+      - ./input_files:/opt/airflow/input_files
+      - ./output_files:/opt/airflow/output_files
+      - ./tmp:/opt/airflow/tmp
     ports:
       - "8080:8080"
     command: webserver
@@ -57,6 +60,9 @@ services:
       - ./dags:/opt/airflow/dags
       - ./logs:/opt/airflow/logs
       - ./plugins:/opt/airflow/plugins
+      - ./input_files:/opt/airflow/input_files
+      - ./output_files:/opt/airflow/output_files
+      - ./tmp:/opt/airflow/tmp
     command: scheduler
 
   worker:
@@ -76,6 +82,9 @@ services:
       - ./dags:/opt/airflow/dags
       - ./logs:/opt/airflow/logs
       - ./plugins:/opt/airflow/plugins
+      - ./input_files:/opt/airflow/input_files
+      - ./output_files:/opt/airflow/output_files
+      - ./tmp:/opt/airflow/tmp
     command: celery worker
 
 volumes:
